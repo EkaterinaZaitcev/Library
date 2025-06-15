@@ -1,4 +1,3 @@
-from django.utils.decorators import method_decorator
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
@@ -7,10 +6,6 @@ from authors.paginators import MaterialsPaginator
 from authors.serializers import AuthorSerializer
 from users.permissions import IsOwnerOrAdmin
 
-
-@method_decorator(name='list', decorator=swagger_auto_schema(
-    operation_description="description from swagger_auto_schema via method_decorator"
-))
 
 class AuthorViewSet(viewsets.ModelViewSet):
     queryset = Author.objects.all()
