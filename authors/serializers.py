@@ -9,10 +9,10 @@ class AuthorSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Author
-        fields = "__all__"
+        fields = ['id', 'name', 'preview', 'date_of_birth', 'books',]
 
 
 class AuthorListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Author
-        fields = "__all__"
+        fields = ['id', 'name']

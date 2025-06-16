@@ -1,3 +1,5 @@
+from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
 from rest_framework import viewsets, status
@@ -15,9 +17,19 @@ class RentalViewSet(viewsets.ModelViewSet):
     serializer_class = RentalSerializer
     pagination_class = RentalPagination
 
+    @swagger_auto_schema(
+        operation_description="Получить список всех выданных книг",
+        responses={200: RentalSerializer(many=True)},
+        tags=["3. Выданные книги"]
+    )
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
 
+    @swagger_auto_schema(
+        operation_description="Выдать книгу",
+        responses={200: RentalSerializer(many=True)},
+        tags=["3. Выданные книги"]
+    )
     def create(self, request, *args, **kwargs):
         data = request.data
         book = Book.objects.get(id=data['book_id'])
@@ -38,9 +50,19 @@ class RentalViewSet(viewsets.ModelViewSet):
             )
         return response
 
+    @swagger_auto_schema(
+        operation_description="Получить информацию о выданной книге",
+        responses={200: RentalSerializer(many=True)},
+        tags=["3. Выданные книги"]
+    )
     def retrieve(self, request, *args, **kwargs):
         return super().retrieve(request, *args, **kwargs)
 
+    @swagger_auto_schema(
+        operation_description="Обновить информацию о выданной книге",
+        responses={200: RentalSerializer(many=True)},
+        tags=["3. Выданные книги"]
+    )
     def update(self, request, *args, **kwargs):
         updating = self.get_object()
 
@@ -52,9 +74,19 @@ class RentalViewSet(viewsets.ModelViewSet):
 
         return super().update(request, *args, **kwargs)
 
+    @swagger_auto_schema(
+        operation_description="Частичное обновление информации о выданной книге",
+        responses={200: RentalSerializer(many=True)},
+        tags=["3. Выданные книги"]
+    )
     def partial_update(self, request, *args, **kwargs):
         return super().partial_update(request, *args, **kwargs)
 
+    @swagger_auto_schema(
+        operation_description="Удалить информацию о выданной книге",
+        responses={200: RentalSerializer(many=True)},
+        tags=["3. Выданные книги"]
+    )
     def destroy(self, request, *args, **kwargs):
         return super().destroy(request, *args, **kwargs)
 

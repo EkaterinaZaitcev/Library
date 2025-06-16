@@ -20,7 +20,7 @@ class RentalSerializer(serializers.ModelSerializer):
             'rental_date',
             'return_date',
             'book_id',
-            'book',
+            'books',
             'user_id',
             'user'
         ]
