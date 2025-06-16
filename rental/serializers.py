@@ -30,7 +30,6 @@ class RentalCreateSerializer(RentalSerializer):
     class Meta(RentalSerializer.Meta):
         fields = [
             'rental_date',
-            'return_date',
             'book_id',
             'user_id'
         ]

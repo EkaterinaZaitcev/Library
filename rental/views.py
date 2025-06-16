@@ -8,7 +8,7 @@ from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from library.models import Book
 from rental.models import Rental
 from rental.paginators import RentalPagination
-from rental.serializers import RentalSerializer
+from rental.serializers import RentalSerializer, RentalCreateSerializer
 from users.permissions import IsOwnerOrAdmin
 
 
@@ -27,7 +27,8 @@ class RentalViewSet(viewsets.ModelViewSet):
 
     @swagger_auto_schema(
         operation_description="Выдать книгу",
-        responses={200: RentalSerializer(many=True)},
+        request_body=RentalCreateSerializer,
+        responses={200: RentalCreateSerializer(many=True)},
         tags=["3. Выданные книги"]
     )
     def create(self, request, *args, **kwargs):

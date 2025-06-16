@@ -2,6 +2,20 @@ from django.db import models
 
 from authors.models import Author
 
+
+class Genre(models.Model):
+    """Класс жанра"""
+    name = models.CharField(max_length=150, verbose_name='Название жанра')
+    description = models.TimeField(verbose_name='Описание жанра', blank=True, null=True)
+
+    def __str__(self):
+        return f'{self.name}'
+
+    class Meta:
+        verbose_name = 'Жанр'
+        verbose_name_plural = 'Жанры'
+
+
 class Book(models.Model):
     """Класс Книги"""
 
