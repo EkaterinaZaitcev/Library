@@ -1,0 +1,36 @@
+[
+  {
+    "model": "library.book",
+    "pk": 1,
+    "fields": {
+      "title": "Руслан и Людмила",
+      "author": 1,
+      "genre": "поэма",
+      "preview": "",
+      "count": 2
+    }
+  },
+  {
+    "model": "library.book",
+    "pk": 2,
+    "fields": {
+      "title": "Война и мир",
+      "author": 2,
+      "genre": "роман",
+      "preview": "",
+      "count": 4
+    }
+  },
+  {
+    "model": "library.book",
+    "pk": 3,
+    "fields": {
+      "title": "Анна Каренина",
+      "author": 2,
+      "genre": "роман",
+      "preview": "",
+      "count": 3
+    }
+   }
+
+]
