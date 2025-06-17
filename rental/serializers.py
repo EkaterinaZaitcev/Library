@@ -10,8 +10,16 @@ from users.serializers import UserListSerializer
 class RentalSerializer(serializers.ModelSerializer):
     books = BookListSerializer(read_only=True)
     user = UserListSerializer(read_only=True)
-    book_id = serializers.PrimaryKeyRelatedField(queryset=Book.objects.all(), source='library', write_only=True)
-    user_id = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), source='users', write_only=True)
+    book_id = serializers.PrimaryKeyRelatedField(
+        queryset=Book.objects.all(),
+        source='library',
+        write_only=True
+    )
+    user_id = serializers.PrimaryKeyRelatedField(
+        queryset=User.objects.all(),
+        source='users',
+        write_only=True
+    )
 
     class Meta:
         model = Rental

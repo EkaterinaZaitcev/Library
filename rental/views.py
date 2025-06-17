@@ -1,10 +1,8 @@
-from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
 from rest_framework import viewsets, status
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
-
 from library.models import Book
 from rental.models import Rental
 from rental.paginators import RentalPagination
@@ -34,16 +32,16 @@ class RentalViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         data = request.data
         book = Book.objects.get(id=data['book_id'])
-        #Проверка наличия книг
+        """Проверка наличия книг"""
         if book.count == 0:
-                raise ValidationError(f'Книга {book.title} отсутствует в библиотеке.')
+            raise ValidationError(f'Книга {book.title} отсутствует в библиотеке.')
 
         response = super().create(request, *args, **kwargs)
-        #Уменьшаем количество книг после выдачи
+        """Уменьшаем количество книг после выдачи"""
         book.count -= 1
         book.save()
 
-        # Проверка количества книг
+        """Проверка количества книг"""
         if book.count == 2:
             return Response(
                 {f'Книга {book.title} выдана {data}. Осталось 2 экземпляра.'},
@@ -67,7 +65,7 @@ class RentalViewSet(viewsets.ModelViewSet):
     def update(self, request, *args, **kwargs):
         updating = self.get_object()
 
-        #Проверка на возврат книги
+        """Проверка на возврат книги"""
         if "return_date" in request.data and request.data['return_date']:
             if not updating.return_date:
                 updating.book.count += 1

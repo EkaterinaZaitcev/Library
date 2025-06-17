@@ -12,5 +12,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Копируем остальные файлы проекта в контейнер
 COPY . .
 
+RUN mkdir -p /app/staticfiles && chmod -R 755 /app/staticfiles
+
 # Открываем порт 8000 для взаимодействия с приложением
 EXPOSE 8000

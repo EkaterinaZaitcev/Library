@@ -1,5 +1,6 @@
 from rest_framework import permissions
 
+
 class IsOwnerOrAdmin(permissions.BasePermission):
     """Определяет и разрешает доступ только владельцу или администратору"""
 

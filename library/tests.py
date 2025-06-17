@@ -13,9 +13,11 @@ class LibraryTestCase(APITestCase):
         self.user = User.objects.create(email='test@yandex.ru',)
         self.author = Author.objects.create(name='Сергей Александрович Есенин',
                                             date_of_birth='1895-09-21')
-        self.book = Book.objects.create(title='Береза',
-                                            author=self.author,
-                                            genre='поэзия')
+        self.book = Book.objects.create(
+            title='Береза',
+            author=self.author,
+            genre='поэзия'
+        )
         self.client.force_authenticate(user=self.user)
 
     def test_book_retrieve(self):
@@ -24,4 +26,3 @@ class LibraryTestCase(APITestCase):
         data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(data.get('title'), self.book.title)
-

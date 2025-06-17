@@ -1,7 +1,11 @@
 from drf_yasg.utils import swagger_auto_schema
 
-from rest_framework.generics import (CreateAPIView, ListAPIView,
-                                     RetrieveAPIView, UpdateAPIView)
+from rest_framework.generics import (
+    CreateAPIView,
+    ListAPIView,
+    RetrieveAPIView,
+    UpdateAPIView,
+)
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
 
@@ -9,9 +13,15 @@ from users.models import User
 from users.permissions import IsOwnerOrAdmin
 from users.serializers import UserSerializer, UserTokenObtainPairSerializer
 
-@swagger_auto_schema(tags=['4. Пользователи'], operation_description="CREATE", responses={200: UserSerializer(many=True)})
+
+@swagger_auto_schema(
+    tags=["4. Пользователи"],
+    operation_description="CREATE",
+    responses={200: UserSerializer(many=True)},
+)
 class UserCreateAPIView(CreateAPIView):
-    """ Регистрация нового пользователя """
+    """Регистрация нового пользователя"""
+
     serializer_class = UserSerializer
     queryset = User.objects.all()
     permission_classes = [AllowAny]
@@ -21,28 +31,47 @@ class UserCreateAPIView(CreateAPIView):
         user.set_password(user.password)
         user.save()
 
-@swagger_auto_schema(tags=['4. Пользователи'], operation_description="LIST", responses={200: UserSerializer(many=True)})
+
+@swagger_auto_schema(
+    tags=["4. Пользователи"],
+    operation_description="LIST",
+    responses={200: UserSerializer(many=True)},
+)
 class UserListAPIView(ListAPIView):
-    """ Для просмотра списка профилей """
+    """Для просмотра списка профилей"""
+
     serializer_class = UserSerializer
     queryset = User.objects.all()
     permission_classes = [IsAuthenticated]
 
-@swagger_auto_schema(tags=['4. Пользователи'], operation_description="UPDATE", responses={200: UserSerializer(many=True)})
+
+@swagger_auto_schema(
+    tags=["4. Пользователи"],
+    operation_description="UPDATE",
+    responses={200: UserSerializer(many=True)},
+)
 class UserUpdateAPIView(UpdateAPIView):
-    """ Изменение профиля пользователя """
+    """Изменение профиля пользователя"""
+
     serializer_class = UserSerializer
     queryset = User.objects.all()
     permission_classes = [IsAuthenticated]
 
-@swagger_auto_schema(tags=['4. Пользователи'], operation_description="RETRIEVE", responses={200: UserSerializer(many=True)})
+
+@swagger_auto_schema(
+    tags=["4. Пользователи"],
+    operation_description="RETRIEVE",
+    responses={200: UserSerializer(many=True)},
+)
 class UserRetrieveAPIView(RetrieveAPIView):
-    """ Просмотр пользователя по ID """
+    """Просмотр пользователя по ID"""
+
     serializer_class = UserSerializer
     queryset = User.objects.all()
-    permission_classes = [IsAuthenticated| IsOwnerOrAdmin]
+    permission_classes = [IsAuthenticated | IsOwnerOrAdmin]
 
 
 class UserTokenObtainPairView(TokenObtainPairView):
-    """ Получение токена """
+    """Получение токена"""
+
     serializer_class = UserTokenObtainPairSerializer

@@ -9,12 +9,12 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         user = User.objects.create(
-            username = 'Ivan Petrov',
-            email = 'test@mail.ru',
-            is_superuser = False,
-            is_staff = False,
-            is_active = True,
-            phone = '+79991231231',
+            username='Ivan Petrov',
+            email='test@mail.ru',
+            is_superuser=False,
+            is_staff=False,
+            is_active=True,
+            phone='+79991231231',
         )
         user.set_password('zaq123')
         user.save()

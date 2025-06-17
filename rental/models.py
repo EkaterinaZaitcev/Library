@@ -34,4 +34,3 @@ class Rental(models.Model):
     class Meta:
         verbose_name = 'Выдача книги'
         verbose_name_plural = 'Выдачи книг'
-
