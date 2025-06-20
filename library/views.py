@@ -17,9 +17,9 @@ class BookCreateAPIView(generics.CreateAPIView):
     permission_classes = [IsAuthenticated, IsOwnerOrAdmin]
     pagination_class = BooksPaginator
     """Фильтрация и поиск"""
-    filter_backends = [filters.DjangoFilterBackend, ]
+    filter_backends = [filters.DjangoFilterBackend]
     filters_fields = ['author', 'title', 'genre']
-    search_fields = ['author', 'title']
+    search_fields = ['author', 'title','genre']
 
 
 @swagger_auto_schema(tags=['2. Библиотека'], operation_description="GET", responses={200: BookSerializer(many=True)})

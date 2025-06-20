@@ -30,7 +30,12 @@ class Rental(models.Model):
         blank=True,
         null=True,
     )
+    is_returned = models.BooleanField(default=False, verbose_name="Флаг возврата книги")
+
+    def __str__(self):
+        return f"Книга: {self.book} у {self.user} до {self.return_date}"
 
     class Meta:
         verbose_name = 'Выдача книги'
         verbose_name_plural = 'Выдачи книг'
+        ordering = ["pk"]

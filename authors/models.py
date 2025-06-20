@@ -18,7 +18,7 @@ class Author(models.Model):
     )
 
     def __str__(self):
-        return f"Автор - {self.name}"
+        return f"{self.name}"
 
     class Meta:
         verbose_name = "Автор"
