@@ -15,5 +15,5 @@
 - Документация API: OpenAPI (Swagger / ReDoc)
 - Формат кода: PEP8
 ## Установка и запуск проекта
-1. https://github.com/EkaterinaZaitcev/Diplom_library.git
-2. SSH git@github.com:EkaterinaZaitcev/Diplom_library.git
+1. https://github.com/EkaterinaZaitcev/Library.git
+2. SSH git@github.com:EkaterinaZaitcev/Library.git
