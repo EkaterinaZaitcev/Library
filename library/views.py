@@ -7,8 +7,8 @@ from library.paginators import BooksPaginator
 from library.serializers import BookSerializer
 
 
-@swagger_auto_schema(tags=['2. Библиотека'], operation_description="POST",
-                     responses={200: BookSerializer(many=True)})
+@swagger_auto_schema(operation_description="POST",
+                     responses={201: BookSerializer(many=True)})
 class BookCreateAPIView(generics.CreateAPIView):
     """Создание новой книги"""
     serializer_class = BookSerializer
@@ -21,7 +21,7 @@ class BookCreateAPIView(generics.CreateAPIView):
     search_fields = ['author', 'title']
 
 
-@swagger_auto_schema(tags=['2. Библиотека'], operation_description="GET", responses={200: BookSerializer(many=True)})
+@swagger_auto_schema(operation_description="GET", responses={200: BookSerializer(many=True)})
 class BookListAPIView(generics.ListAPIView):
     """Список всех книг"""
     serializer_class = BookSerializer
@@ -29,7 +29,7 @@ class BookListAPIView(generics.ListAPIView):
     permission_classes = [AllowAny]
 
 
-@swagger_auto_schema(tags=['2. Библиотека'], operation_description="PATCH", responses={200: BookSerializer(many=True)})
+@swagger_auto_schema(operation_description="PATCH", responses={200: BookSerializer(many=True)})
 class BookRetrieveAPIView(generics.RetrieveAPIView):
     """Информация о книге"""
     serializer_class = BookSerializer
@@ -37,7 +37,7 @@ class BookRetrieveAPIView(generics.RetrieveAPIView):
     permission_classes = [AllowAny]
 
 
-@swagger_auto_schema(tags=['2. Библиотека'], operation_description="PUT", responses={200: BookSerializer(many=True)})
+@swagger_auto_schema(operation_description="PUT", responses={200: BookSerializer(many=True)})
 class BookUpdateAPIView(generics.UpdateAPIView):
     """Обновление информации о книге"""
     serializer_class = BookSerializer
@@ -45,7 +45,7 @@ class BookUpdateAPIView(generics.UpdateAPIView):
     permission_classes = [IsAdminUser]
 
 
-@swagger_auto_schema(tags=['2. Библиотека'], operation_description="DELETE", responses={200: BookSerializer(many=True)})
+@swagger_auto_schema(operation_description="DELETE", responses={200: BookSerializer(many=True)})
 class BookDestroyAPIView(generics.DestroyAPIView):
     """Удаление книги"""
     queryset = Book.objects.all()

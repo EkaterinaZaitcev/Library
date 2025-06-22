@@ -2,11 +2,10 @@ from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny, IsAdminUser
-
 from authors.models import Author
 from authors.paginators import MaterialsPaginator
 from authors.serializers import AuthorSerializer
-from users.permissions import IsOwner
+
 
 
 class AuthorViewSet(viewsets.ModelViewSet):
@@ -17,7 +16,7 @@ class AuthorViewSet(viewsets.ModelViewSet):
     @swagger_auto_schema(
         operation_description="Получить список всех авторов",
         responses={200: AuthorSerializer(many=True)},
-        tags=["1. Авторы"],
+        tags=["authors"],
         manual_parameters=[
             openapi.Parameter(
                 name="page",
@@ -42,7 +41,7 @@ class AuthorViewSet(viewsets.ModelViewSet):
         operation_description="Создание нового автора. Обязательное поле:name.",
         request_body=AuthorSerializer,
         responses={201: AuthorSerializer},
-        tags=["1. Авторы"]
+        tags=["authors"]
     )
     def create(self, request, *args, **kwargs):
         return super().create(request, *args, **kwargs)
@@ -50,7 +49,7 @@ class AuthorViewSet(viewsets.ModelViewSet):
     @swagger_auto_schema(
         operation_description="Получить информацию об одном авторе.",
         responses={200: AuthorSerializer},
-        tags=["1. Авторы"],
+        tags=["authors"],
         manual_parameters=[
             openapi.Parameter(
                 name="id",
@@ -66,7 +65,7 @@ class AuthorViewSet(viewsets.ModelViewSet):
     @swagger_auto_schema(
         operation_description="Обновить информацию об авторе",
         responses={200: AuthorSerializer},
-        tags=["1. Авторы"],
+        tags=["authors"],
         manual_parameters=[
             openapi.Parameter(
                 name="id",
@@ -82,7 +81,7 @@ class AuthorViewSet(viewsets.ModelViewSet):
     @swagger_auto_schema(
         operation_description="Частичное обновление информации об авторе.",
         responses={200: AuthorSerializer},
-        tags=["1. Авторы"],
+        tags=["authors"],
         manual_parameters=[
             openapi.Parameter(
                 name="id",
@@ -98,7 +97,7 @@ class AuthorViewSet(viewsets.ModelViewSet):
     @swagger_auto_schema(
         operation_description="Удаление автора.",
         responses={204: None},
-        tags=["1. Авторы"],
+        tags=["authors"],
         manual_parameters=[
             openapi.Parameter(
                 name="id",

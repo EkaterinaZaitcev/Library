@@ -2,7 +2,9 @@ from rest_framework import permissions
 
 
 class IsOwner(permissions.BasePermission):
-    """Определяет и разрешает доступ только владельцу или администратору"""
+    """Определяет доступ только владельцу"""
 
     def has_object_permission(self, request, view, obj):
-        return obj.user == request.user
+        if obj.user == request.user:
+            return True
+        return False
