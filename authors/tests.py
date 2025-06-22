@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 
 from authors.models import Author
-from library.models import Book
+from library.models import Book, Genre
 from users.models import User
 
 
@@ -13,12 +13,14 @@ class AuthorTestCase(APITestCase):
         self.user = User.objects.create(email='test@yandex.ru', is_staff=True)
         self.author = Author.objects.create(name='Сергей Александрович Есенин',
                                             date_of_birth='1895-09-21')
+        """self.genre = Genre.objects.create(name='Поэзия', description='')
         self.book = Book.objects.create(
-            title='Береза',
-            author=self.author,
-            genre='поэзия',
-            count=1,
-        )
+            {"title": "Береза",
+            "author": self.author,
+            "author_id": self.author.pk,
+            "genre": self.genre.pk,
+            "count": 6}
+        )"""
         self.client.force_authenticate(user=self.user)
 
     def test_author_list(self):
@@ -47,7 +49,6 @@ class AuthorTestCase(APITestCase):
         request=self.client.post(url, data)
 
         self.assertEqual(request.status_code, status.HTTP_201_CREATED)
-        print(request)
         self.assertEqual(Author.objects.all().count(), 2)
     
     def test_author_destroy(self):
@@ -64,7 +65,6 @@ class AuthorTestCase(APITestCase):
         response = request.json()
     
         self.assertEqual(request.status_code, status.HTTP_200_OK)
-        print(request)
         self.assertEqual(response.get("date_of_birth"), "1895-09-10")
     
     def test_author_retrieve(self):

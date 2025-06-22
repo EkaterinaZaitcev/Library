@@ -1,12 +1,12 @@
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import AllowAny, IsAdminUser
 
 from authors.models import Author
 from authors.paginators import MaterialsPaginator
 from authors.serializers import AuthorSerializer
-from users.permissions import IsOwnerOrAdmin
+from users.permissions import IsOwner
 
 
 class AuthorViewSet(viewsets.ModelViewSet):
@@ -114,4 +114,4 @@ class AuthorViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         if self.action == 'list':
             return [AllowAny()]
-        return [IsAuthenticated(), IsOwnerOrAdmin()]
+        return [IsAdminUser()]

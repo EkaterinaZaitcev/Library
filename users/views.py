@@ -6,11 +6,11 @@ from rest_framework.generics import (
     RetrieveAPIView,
     UpdateAPIView,
 )
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAdminUser
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 from users.models import User
-from users.permissions import IsOwnerOrAdmin
+from users.permissions import IsOwner
 from users.serializers import UserSerializer, UserTokenObtainPairSerializer
 
 
@@ -42,7 +42,7 @@ class UserListAPIView(ListAPIView):
 
     serializer_class = UserSerializer
     queryset = User.objects.all()
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAdminUser]
 
 
 @swagger_auto_schema(
@@ -55,7 +55,7 @@ class UserUpdateAPIView(UpdateAPIView):
 
     serializer_class = UserSerializer
     queryset = User.objects.all()
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsOwner]
 
 
 @swagger_auto_schema(
@@ -68,7 +68,7 @@ class UserRetrieveAPIView(RetrieveAPIView):
 
     serializer_class = UserSerializer
     queryset = User.objects.all()
-    permission_classes = [IsAuthenticated | IsOwnerOrAdmin]
+    permission_classes = [IsAdminUser | IsOwner]
 
 
 class UserTokenObtainPairView(TokenObtainPairView):

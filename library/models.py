@@ -1,6 +1,4 @@
 from django.db import models
-from django.db.models import SET_NULL
-
 from authors.models import Author
 
 
@@ -50,7 +48,7 @@ class Book(models.Model):
         help_text="Введите количество книг в наличии",
         default=1,
     )
-    quantity=models.PositiveSmallIntegerField(verbose_name="Количество свободных книг")
+    quantity=models.PositiveSmallIntegerField(verbose_name="Количество свободных книг", default=0)
     is_available = models.BooleanField(default=True, verbose_name="Свободна ли книга для выдачи")
 
     class Meta:

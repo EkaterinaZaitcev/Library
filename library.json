@@ -1,13 +1,31 @@
 [
   {
+    "model": "library.genre",
+    "pk": 1,
+    "fields": {
+      "name": "Поэма",
+      "description": "крупное или среднее по объёму стихотворное произведение, как правило, лиро-эпического характера."
+    }
+  },
+  {
+    "model": "library.genre",
+    "pk": 2,
+    "fields": {
+      "name": "Роман",
+      "description": "это крупное повествовательное произведение, в котором развёрнуто рассказывается о жизни отдельной личности (или нескольких героев) в процессе её становления и развития ."
+    }
+  },
+  {
     "model": "library.book",
     "pk": 1,
     "fields": {
       "title": "Руслан и Людмила",
       "author": 1,
-      "genre": "поэма",
+      "genre": 1,
       "preview": "",
-      "count": 2
+      "count": 6,
+      "quantity": 6,
+      "is_available": true
     }
   },
   {
@@ -16,9 +34,11 @@
     "fields": {
       "title": "Война и мир",
       "author": 2,
-      "genre": "роман",
+      "genre": 2,
       "preview": "",
-      "count": 4
+      "count": 5,
+      "quantity": 5,
+      "is_available": true
     }
   },
   {
@@ -27,10 +47,11 @@
     "fields": {
       "title": "Анна Каренина",
       "author": 2,
-      "genre": "роман",
+      "genre": 2,
       "preview": "",
-      "count": 3
+      "count": 5,
+      "quantity": 5,
+      "is_available": true
     }
-   }
-
+  }
 ]
