@@ -8,13 +8,14 @@ class Rental(models.Model):
     book = models.ForeignKey(
         Book,
         on_delete=models.CASCADE,
+        default=1,
         related_name="rental",
         verbose_name="Книга",
         help_text="Выберите книгу",
     )
     user = models.ForeignKey(
         User,
-        on_delete=models.CASCADE,
+        on_delete=models.DO_NOTHING,
         related_name="rental",
         verbose_name="Пользователь",
         help_text="Выберите пользователя",
@@ -30,8 +31,12 @@ class Rental(models.Model):
         blank=True,
         null=True,
     )
+    is_returned = models.BooleanField(default=False, verbose_name="Флаг возврата книги")
+
+    def __str__(self):
+        return f"Книга: {self.book} у {self.user} до {self.return_date}"
 
     class Meta:
         verbose_name = 'Выдача книги'
         verbose_name_plural = 'Выдачи книг'
-
+        ordering = ["pk"]
