@@ -3,7 +3,6 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 
 from authors.models import Author
-from library.models import Book, Genre
 from users.models import User
 
 

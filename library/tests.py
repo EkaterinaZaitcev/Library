@@ -1,9 +1,6 @@
-from http.client import responses
-
 from django.urls import reverse
-from rest_framework import status, request
+from rest_framework import status
 from rest_framework.test import APITestCase
-
 from authors.models import Author
 from library.models import Book, Genre
 from users.models import User

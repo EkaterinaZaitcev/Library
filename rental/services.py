@@ -8,9 +8,9 @@ def return_book(book, rental):
 
     if not rental.is_returned:
         rental.is_returned = True
-        rental.return_date=date.today()
+        rental.return_date = date.today()
         if book.count > book.quantity:
-            book.quantity +=1
+            book.quantity += 1
             book.is_available = True
             book.save()
             rental.save()
@@ -30,4 +30,3 @@ def send_mail(obj):
     from_email = EMAIL_HOST_USER
     recipient_list = [obj.user.email]
     send_mail(subject, message, from_email, recipient_list)
-    return super().form_valid(form)

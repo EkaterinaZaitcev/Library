@@ -1,6 +1,5 @@
 from django.contrib import admin
 from library.models import Book, Genre
-from rental.models import Rental
 
 
 @admin.register(Book)
