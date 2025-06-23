@@ -15,7 +15,7 @@ def return_book(book, rental):
             book.save()
             rental.save()
         else:
-            raise ValueError(f"Все книги возвращены!")
+            raise ValueError("Все книги возвращены!")
     else:
         raise ValueError(f"Книга {book.title} возвращена!")
     return book, rental
