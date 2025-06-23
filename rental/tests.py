@@ -24,7 +24,7 @@ class RentalTestCase(APITestCase):
             count=1,
         )
         self.rental = Rental.objects.create(
-            rental_date="2025-06-22", return_date="2025-07-20", user=self.user
+            rental_date="2025-06-24", return_date="2025-07-20", user=self.user
         )
         self.client.force_authenticate(user=self.user)
 
@@ -44,7 +44,7 @@ class RentalTestCase(APITestCase):
                     {
                         "id": 1,
                         "user": {"id": 1, "username": ""},
-                        "rental_date": "2025-06-22",
+                        "rental_date": "2025-06-24",
                         "return_date": "2025-07-20",
                         "is_returned": False,
                         "book": 1,
@@ -55,7 +55,7 @@ class RentalTestCase(APITestCase):
 
     def test_rental_create(self):
         url = reverse("rental:rental_list")
-        data = {"rental_date": "2025-06-22", "return_date": "2025-07-20"}
+        data = {"rental_date": "2025-06-24", "return_date": "2025-07-20"}
         request = self.client.get(url, data)
 
         self.assertEqual(request.status_code, status.HTTP_200_OK)
