@@ -18,7 +18,7 @@ services:
 
     db:
         image: postgres:17
-        container_name: library_db
+        container_name: db_library
         env_file:
             - ./.env
         restart: always

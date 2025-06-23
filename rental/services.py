@@ -1,5 +1,7 @@
 from datetime import date
 
+from config.settings import EMAIL_HOST_USER
+
 
 def return_book(book, rental):
     """Отметка о возвращении книги"""
@@ -17,3 +19,14 @@ def return_book(book, rental):
     else:
         raise ValueError(f"Книга {book.title} возвращена!")
     return book, rental
+
+
+def send_mail(obj):
+    """Отправка писем с напоминаниями о возврате книг"""
+    subject = "Пора возвращать книгу в библиотеку!"
+    message = (f'Уважаемый читатель!'
+               f'Срок аренды {obj.book} истекает {obj.return_date}.'
+               f'Просим вернуть {obj.book} до указанного срока {obj.return_date}.')
+    from_email = EMAIL_HOST_USER
+    recipient_list = [obj.user.email]
+    send_mail(subject, message, from_email, recipient_list)
