@@ -37,6 +37,6 @@ class Rental(models.Model):
         return f"Книга: {self.book} у {self.user} до {self.return_date}"
 
     class Meta:
-        verbose_name = 'Выдача книги'
-        verbose_name_plural = 'Выдачи книг'
+        verbose_name = "Выдача книги"
+        verbose_name_plural = "Выдачи книг"
         ordering = ["pk"]

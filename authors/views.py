@@ -7,7 +7,6 @@ from authors.paginators import MaterialsPaginator
 from authors.serializers import AuthorSerializer
 
 
-
 class AuthorViewSet(viewsets.ModelViewSet):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
@@ -41,7 +40,7 @@ class AuthorViewSet(viewsets.ModelViewSet):
         operation_description="Создание нового автора. Обязательное поле:name.",
         request_body=AuthorSerializer,
         responses={201: AuthorSerializer},
-        tags=["authors"]
+        tags=["authors"],
     )
     def create(self, request, *args, **kwargs):
         return super().create(request, *args, **kwargs)
@@ -55,7 +54,7 @@ class AuthorViewSet(viewsets.ModelViewSet):
                 name="id",
                 in_=openapi.IN_PATH,
                 type=openapi.TYPE_INTEGER,
-                description="Укажите id_номер автора."
+                description="Укажите id_номер автора.",
             ),
         ],
     )
@@ -71,7 +70,7 @@ class AuthorViewSet(viewsets.ModelViewSet):
                 name="id",
                 in_=openapi.IN_PATH,
                 type=openapi.TYPE_INTEGER,
-                description="Укажите id_номер автора."
+                description="Укажите id_номер автора.",
             ),
         ],
     )
@@ -87,7 +86,7 @@ class AuthorViewSet(viewsets.ModelViewSet):
                 name="id",
                 in_=openapi.IN_PATH,
                 type=openapi.TYPE_INTEGER,
-                description="Укажите id_номер автора."
+                description="Укажите id_номер автора.",
             ),
         ],
     )
@@ -103,7 +102,7 @@ class AuthorViewSet(viewsets.ModelViewSet):
                 name="id",
                 in_=openapi.IN_PATH,
                 type=openapi.TYPE_INTEGER,
-                description="Укажите id_номер автора."
+                description="Укажите id_номер автора.",
             ),
         ],
     )
@@ -111,6 +110,6 @@ class AuthorViewSet(viewsets.ModelViewSet):
         return super().destroy(request, *args, **kwargs)
 
     def get_permissions(self):
-        if self.action == 'list':
+        if self.action == "list":
             return [AllowAny()]
         return [IsAdminUser()]

@@ -10,6 +10,7 @@ class GenreSerializer(serializers.ModelSerializer):
         model = Genre
         fields = "__all__"
 
+
 class BookSerializer(serializers.ModelSerializer):
     author = serializers.PrimaryKeyRelatedField(queryset=Author.objects.all())
     genre = serializers.PrimaryKeyRelatedField(queryset=Genre.objects.all())

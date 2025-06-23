@@ -30,3 +30,4 @@ def send_mail(obj):
     from_email = EMAIL_HOST_USER
     recipient_list = [obj.user.email]
     send_mail(subject, message, from_email, recipient_list)
+    return super().form_valid(form)
