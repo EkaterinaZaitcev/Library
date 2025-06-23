@@ -15,5 +15,44 @@
 - Документация API: OpenAPI (Swagger / ReDoc)
 - Формат кода: PEP8
 ## Установка и запуск проекта
-1. https://github.com/EkaterinaZaitcev/Library.git
-2. SSH git@github.com:EkaterinaZaitcev/Library.git
+1. Клонирование репозитория
+- ```bash
+  https://github.com/EkaterinaZaitcev/Library.git
+2. Установка зависимостей из файла 
+- ```bash 
+  pip install -r requirements.txt
+3. Настройте файл окружения:
+Скопируйте .env.sample в .env и настройте переменные окружения в файле .env.
+
+4. Применение миграции:
+- ```bash 
+  python manage.py migrate
+  
+5. Для заполнения тестовой базы данных используйте команды:
+- Команда для создания администратора
+- ```bash 
+  python manage.py csu
+- Добавление данных в базу данных  
+- ```bash
+  python manage.py loaddata author.json
+  python manage.py loaddata library.json
+  python manage.py loaddata rental.json
+
+6. Запуск сервера
+- ```bash
+  python manage.py runserver
+  ```
+  
+## **Запуск проекта с Docker**
+
+Убедитесь, что у вас установлен Docker и Docker Compose. 
+Для запуска контейнеров используйте следующую команду:
+- ```bash
+  docker-compose up -d --build
+  ```
+  
+## Документация доступна по адресу:
+
+http://127.0.0.1:8000/swager/
+
+http://127.0.0.1:8000/redoc/
