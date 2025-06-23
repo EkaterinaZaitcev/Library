@@ -3,7 +3,6 @@ import sys
 from datetime import timedelta
 from pathlib import Path
 
-from celery.schedules import crontab
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -30,7 +29,6 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'django_filters',
     'corsheaders',
-    'django_celery_beat',
     'authors',
     'library',
     'rental',
@@ -162,28 +160,3 @@ CACHES = {
         'LOCATION': 'redis://redis:6379/1',
         }
     }
-
-
-EMAIL_BACKEND = os.getenv("EMAIL_BACKEND")
-EMAIL_HOST = os.getenv("EMAIL_HOST")
-EMAIL_PORT = os.getenv("EMAIL_PORT")
-EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", False) == "True"
-EMAIL_USE_SSL = os.getenv("EMAIL_USE_TLS", False) == "True"
-EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
-
-SERVER_EMAIL = EMAIL_HOST_USER
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-
-CELERY_TIMEZONE = TIME_ZONE
-CELERY_TASK_TRACK_STARTED = True
-CELERY_TASK_TIME_LIMIT = 30 * 60
-
-# Настройки для Celery
-CELERY_BEAT_SCHEDULE = {
-    "task-return-date": {
-        "task": "rental.check_return_book",
-        "schedule": crontab(minute=0, hour=0),
-    },
-}
