@@ -8,7 +8,6 @@ class Rental(models.Model):
     book = models.ForeignKey(
         Book,
         on_delete=models.CASCADE,
-        default=1,
         related_name="rental",
         verbose_name="Книга",
         help_text="Выберите книгу",
