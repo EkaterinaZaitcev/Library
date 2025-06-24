@@ -13,14 +13,6 @@ class AuthorTestCase(APITestCase):
         self.author = Author.objects.create(
             name="Сергей Александрович Есенин", date_of_birth="1895-09-21"
         )
-        """self.genre = Genre.objects.create(name='Поэзия', description='')
-        self.book = Book.objects.create(
-            {"title": "Береза",
-            "author": self.author,
-            "author_id": self.author.pk,
-            "genre": self.genre.pk,
-            "count": 6}
-        )"""
         self.client.force_authenticate(user=self.user)
 
     def test_author_list(self):
