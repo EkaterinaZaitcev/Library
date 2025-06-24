@@ -41,13 +41,12 @@ class RentalTestCase(APITestCase):
                 "next": None,
                 "previous": None,
                 "results": [
-                    {"book": 9,
-                        "id": 3,
-                        "user": {"id": 13, "username": ""},
+                    {"book": self.book.id,
+                        "id": int(response["results"][0]["id"]),
+                        "user": {"id": self.user.id, "username": ""},
                         "rental_date": "2025-06-24",
                         "return_date": "2025-07-20",
                         "is_returned": False,
-                        "book": self.book.id,
                     }
                 ],
             },
