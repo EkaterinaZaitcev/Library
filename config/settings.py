@@ -1,5 +1,6 @@
 import os
 import sys
+
 from datetime import timedelta
 from pathlib import Path
 from django.core.management.utils import get_random_secret_key
@@ -133,7 +134,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://read-and-write.example.com",
 ]
 
-CSRF_TRUSTED_ORIGINS = ["http://localhost/",  "http://84.201.153.238/"]
+CSRF_TRUSTED_ORIGINS = ["http://localhost/"]
 
 
 CACHES = {

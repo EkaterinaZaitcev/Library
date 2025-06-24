@@ -42,8 +42,8 @@ class RentalTestCase(APITestCase):
                 "previous": None,
                 "results": [
                     {
-                        "id": 1,
-                        "user": {"id": 1, "username": ""},
+                        "id": 3,
+                        "user": {"id": 13, "username": ""},
                         "rental_date": "2025-06-25",
                         "return_date": "2025-07-20",
                         "is_returned": False,

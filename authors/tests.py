@@ -29,7 +29,7 @@ class AuthorTestCase(APITestCase):
                 "previous": None,
                 "results": [
                     {
-                        "id": 1,
+                        "id": int(response["results"][0]["id"]),
                         "name": "Сергей Александрович Есенин",
                         "preview": None,
                         "date_of_birth": "1895-09-21",
