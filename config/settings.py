@@ -1,6 +1,8 @@
 import os
 from datetime import timedelta
 from pathlib import Path
+
+from django.conf.global_settings import STATICFILES_DIRS
 from django.core.management.utils import get_random_secret_key
 from dotenv import load_dotenv
 
@@ -104,7 +106,8 @@ USE_TZ = True
 
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = BASE_DIR / 'static'
+STATICFILES_DIRS = [BASE_DIR, 'staticfiles']
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")

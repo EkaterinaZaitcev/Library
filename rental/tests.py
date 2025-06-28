@@ -1,6 +1,7 @@
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
+from freezegun import freeze_time
 
 from authors.models import Author
 from library.models import Book, Genre
@@ -9,7 +10,7 @@ from users.models import User
 
 
 class RentalTestCase(APITestCase):
-
+    @freeze_time("2025-06-24")
     def setUp(self):
         self.user = User.objects.create(email="test@yandex.ru", is_staff=True)
         self.author = Author.objects.create(
@@ -29,6 +30,7 @@ class RentalTestCase(APITestCase):
         self.client.force_authenticate(user=self.user)
 
     def test_rental_list(self):
+
         url = reverse("rental:rental_list")
         request = self.client.get(url)
         response = request.json()
@@ -41,7 +43,8 @@ class RentalTestCase(APITestCase):
                 "next": None,
                 "previous": None,
                 "results": [
-                    {"book": self.book.id,
+                    {
+                        "book": self.book.id,
                         "id": int(response["results"][0]["id"]),
                         "user": {"id": self.user.id, "username": ""},
                         "rental_date": "2025-06-24",
